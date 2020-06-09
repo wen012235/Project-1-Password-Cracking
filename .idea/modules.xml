@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/PycharmProjects/PasswordCracker/.idea/PasswordCracker.iml" filepath="$USER_HOME$/PycharmProjects/PasswordCracker/.idea/PasswordCracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/project-1-password-cracking.iml" filepath="$PROJECT_DIR$/.idea/project-1-password-cracking.iml" />
+    </modules>
+  </component>
+</project>
