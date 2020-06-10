@@ -23,7 +23,6 @@ def menulist():
         passwordhashmenu=input("press Y to continue or any other key to return to the main menu:\n")
         if passwordhashmenu =="Y" or passwordhashmenu=="y":
             alreadyhashed()
-            dictionarydata()
         else:
             menulist()
 
