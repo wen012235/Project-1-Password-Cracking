@@ -2,7 +2,7 @@ from urllib.request import urlopen, hashlib
 
 #provides a menu with 3 options
 def menulist():
-        print(
+    print(
         "Welcome to the password cracker.  \n Press 1 to enter an already hashed password \n Press 2 if you need to hash your password \n Press 3 for brute force without hashing \n")
     menu = input("How would you like to proceed?\n")
 
