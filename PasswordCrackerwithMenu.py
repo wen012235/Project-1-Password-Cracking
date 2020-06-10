@@ -1,4 +1,5 @@
 from urllib.request import urlopen, hashlib
+import time
 
 #provides a menu with 3 options
 def menulist():
@@ -22,6 +23,7 @@ def menulist():
         passwordhashmenu=input("press Y to continue or any other key to return to the main menu:\n")
         if passwordhashmenu =="Y" or passwordhashmenu=="y":
             alreadyhashed()
+            dictionarydata()
         else:
             menulist()
 
@@ -43,6 +45,8 @@ def alreadyhashed():
         'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt').read(),
                                'utf-8')
 
+    start = time.time()
+    attempts = 0
     # a for loop to look line by line at each of those 10,000 passwords
     for guess in LIST_OF_COMMON_PASSWORDS.split('\n'):
 
@@ -51,13 +55,19 @@ def alreadyhashed():
 
         # comparing each of the hashed common passwords to the user input to determine if there is a match
         if hashedGuess == md5hash:
-
+            end = time.time()
             # if they match, print the correct guess and quit the program.
             print("The password is", str(guess))
+            if attempts==1:
+                print("It took", str(end-start), "seconds\nand", str(attempts), "attempt to crack your password")
+            else:
+                print("It took", str(end - start), "seconds\nand", str(attempts), "attempts to crack your password")
             quit()
+
         # or else, if they don't match, continue to the next hashed password and compare those
         elif hashedGuess != md5hash:
-            print("Password guess ", str(guess), " does not match, trying next...")
+            print("Password guess", str(guess), " does not match, trying next...")
+            attempts+=1
 
     # if the password list is exhausted and no match is found
     print("Password not in database, we'll get them next time.")
