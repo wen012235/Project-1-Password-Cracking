@@ -20,10 +20,10 @@ def menulist():
         + "Press 2 to enter an already hashed password for a dictionary attack. \n" \
         + "Press 3 to enter an already hashed password for a brute force attack. \n")
     
-    menu = input("How would you like to proceed:  ")
+    menu = int(input("How would you like to proceed:  "))
 
     #if you only have the plaintext password, this will provide an md5 hash of that password, and then prompt user on how to move forward
-    if menu == "1":
+    if menu == 1:
 
         password = input("\nInput the password to hash:\n>")
         print("\nMD5 hash:\n")
@@ -31,25 +31,27 @@ def menulist():
         hash_object = hashlib.md5(setpass)
         guess_pw = hash_object.hexdigest()
         print(guess_pw)
-        print("\nCopy and paste the above hash into the password cracker.\n Are you ready to proceed?")
-        passwordhashmenu=input("Press 'D' or 'd' for Dictionary Attack, 'B' or 'b' for Brute Force Attack, or any other key to return to the main menu:\n")
+        print("\nCopy and paste the above hash into the password cracker.\n\nHow would you ready to proceed?")
+        passwordhashmenu=input( "Press 'd' for Dictionary Attack, " \
+                              + "'b' for Brute Force Attack, " \
+                              + "or any other key to return to the main menu:\n").lower()
         
         # prompt user on how to move forward
-        if passwordhashmenu =="D" or passwordhashmenu=="d":
+        if passwordhashmenu=="d":
             dictionaryattack()
 
-        elif passwordhashmenu =="B" or passwordhashmenu=="b":
+        elif passwordhashmenu=="b":
             bruteforceattack()
 
         else:
             menulist()
 
     #if you already have an md5 hash, then dictionaryattack() (defined below) will run for a dictionary attack
-    elif menu == "2":
+    elif menu == 2:
         dictionaryattack()
 
     #if you already have an md5 hash, then bruteforceattack() (defined below) will run for a dictionary attack
-    elif menu == "3":
+    elif menu == 3:
         bruteforceattack()
 
     #if you provide an option other than 1, 2, or 3
@@ -86,67 +88,67 @@ def dictionaryattack():
 # brute force attack function
 #
 def bruteforceattack():
-        
-        # brute force menu
-        print("\nPlease select minimum and maximum password lengths:")
 
-        # ensure minimum length is a number
-        while True:
-            try:
-                minimum_lenth = int(input("Minimum Length:  "))
-                break
-            except ValueError:
-                print("\nPlease insert a valid number!\n")
+    # brute force menu
+    print("\nPlease select minimum and maximum password lengths:")
 
-        # ensure maximum length is a number
-        while True:
-            try:
-                maximum_lenth = int(input("Maximum Length:  "))
-                break
-            except ValueError:
-                print("\nPlease insert a valid number!\n")
-        
-        # select character set to be used for brute force method
-        print("\nPlease select your prefered Character Set from the following options: \n" \
-            + "Press 1 for alphabetical characters: [a-zA-Z] \n" \
-            + "Press 2 for alphanumeric characters: [a-zA-Z0-9] \n" \
-            + "Press 3 for alphanumeric characters + punctuation: [a-zA-Z0-9!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~] \n"
-            + "Press 4 for mangle: TODO \n")
+    # ensure minimum length is a number
+    while True:
+        try:
+            minimum_lenth = int(input("Minimum Length:  "))
+            break
+        except ValueError:
+            print("\nPlease insert a valid number!\n")
 
-        character_set_menu = input("Character Set:  ")
+    # ensure maximum length is a number
+    while True:
+        try:
+            maximum_lenth = int(input("Maximum Length:  "))
+            break
+        except ValueError:
+            print("\nPlease insert a valid number!\n")
+    
+    # select character set to be used for brute force method
+    print("\nPlease select your prefered Character Set from the following options: \n" \
+        + "Press 1 for alphabetical characters: [a-zA-Z] \n" \
+        + "Press 2 for alphanumeric characters: [a-zA-Z0-9] \n" \
+        + "Press 3 for alphanumeric characters + punctuation: [a-zA-Z0-9!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~] \n"
+        + "Press 4 for mangle: TODO \n")
 
-        # character set variables
-        # https://stackoverflow.com/questions/16060899/alphabet-range-in-python
-        LOWERCASE_LIST = list(string.ascii_lowercase)  # "abcdefghijklmnopqrstuvwxyz"
-        UPPERCASE_LIST = list(string.ascii_uppercase)  # "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        DIGITS_LIST = list(string.digits)              # "0123456789"
-        PUNCTUATION_LIST = list(string.punctuation)    # "!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"
-        #MANGLE = # TODO: Add mangling
+    character_set_menu = int(input("Character Set:  "))
 
-        # combine specified character set as selected by user
-        # alphabetical
-        if character_set_menu == "1":
-            character_set = LOWERCASE_LIST + UPPERCASE_LIST
+    # character set variables
+    # https://stackoverflow.com/questions/16060899/alphabet-range-in-python
+    LOWERCASE_LIST = list(string.ascii_lowercase)  # "abcdefghijklmnopqrstuvwxyz"
+    UPPERCASE_LIST = list(string.ascii_uppercase)  # "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    DIGITS_LIST = list(string.digits)              # "0123456789"
+    PUNCTUATION_LIST = list(string.punctuation)    # "!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"
+    #MANGLE = # TODO: Add mangling
 
-        # alphanumeric
-        elif character_set_menu == "2":
-            character_set = LOWERCASE_LIST + UPPERCASE_LIST + DIGITS_LIST
+    # combine specified character set as selected by user
+    # alphabetical
+    if character_set_menu == 1:
+        character_set = LOWERCASE_LIST + UPPERCASE_LIST
 
-        # alphanumeric + punctuation
-        elif character_set_menu == "3":
-            character_set = LOWERCASE_LIST + UPPERCASE_LIST + DIGITS_LIST + PUNCTUATION_LIST
+    # alphanumeric
+    elif character_set_menu == 2:
+        character_set = LOWERCASE_LIST + UPPERCASE_LIST + DIGITS_LIST
 
-        # mangling
-        elif character_set_menu == "4":
-            print("TODO")
+    # alphanumeric + punctuation
+    elif character_set_menu == 3:
+        character_set = LOWERCASE_LIST + UPPERCASE_LIST + DIGITS_LIST + PUNCTUATION_LIST
 
-        #if you provide an option other than 1, 2, 3, or 4
-        else:
-            print("Invalid entry.  Try again")
-            bruteforceattack()
+    # mangling
+    elif character_set_menu == 4:
+        print("TODO")
 
-        # send variables to bruteforceiterate() function
-        bruteforceiterate(minimum_lenth, maximum_lenth, character_set)
+    #if you provide an option other than 1, 2, 3, or 4
+    else:
+        print("Invalid entry.  Try again")
+        bruteforceattack()
+
+    # send variables to bruteforceiterate() function
+    bruteforceiterate(minimum_lenth, maximum_lenth, character_set)
 
 # ---
 # brute force iteration function
