@@ -67,6 +67,7 @@ def menulist():
 # ---
 # dictionary attack function
 #
+#MANGLE = # TODO: Add mangling
 def dictionaryattack():
     #reference global variable start
     global start
@@ -153,7 +154,7 @@ def bruteforceattack():
     UPPERCASE_LIST = list(string.ascii_uppercase)  # "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     DIGITS_LIST = list(string.digits)              # "0123456789"
     PUNCTUATION_LIST = list(string.punctuation)    # "!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"
-    #MANGLE = # TODO: Add mangling
+   
 
     # combine specified character set as selected by user
     # alphabetical
