@@ -109,14 +109,23 @@ def dictionaryattack():
     if rules == 'y':
         # mangle rules
         # the code for this was based off of the leetspeak code on google
-        ruleOne = {'a':'@', 'b':'8', 'c':'(', 'd':'6', 'e':'3', 'f':'#', 'g':'9', 'h':'#', 'i':'1', 'k':'<', 'l':'1', 'o':'0', 'q':'9', 's':'5', 't':'+', 'v':'>', 'w':'uu', 'x':'%', 'y':'?'}
-        ruleTwo = {'tt':'2T', 'i':'!', 's':'$', 'a':'4', 'you':'j00', 'b':'B', 't':'7', 'T':'7'}
+        ruleOne = {'a':'@', 'e':'3', 'i':'1', 'o':'0', 's':'$'}
+        ruleTwo = {'a':'@', 'e':'3', 'i':'!', 'o':'0', 's':'$'}
+        ruleThree = {'a':'4', 'e':'3', 'i':'1', 'o':'0', 's':'5'}
+        ruleFour = {'a':'4', 'e':'3', 'i':'!', 'o':'0', 's':'$'}
+        ruleFive = {'a':'@', 'b':'B', 'c':'(', 'd':'6', 'e':'3', 'f':'#', 'g':'9', 'h':'#', 'i':'!', 'k':'<', 'l':'1', 'o':'0', 'q':'9', 's':'$', 't':'7', 'v':'>', 'w':'uu', 'x':'%', 'y':'?'}
+        
         for guess in PASSWORD_LIST.split('\n'):
             wordR1 = guess
             wordR2 = guess
+            wordR3 = guess
+            wordR4 = guess
+            wordR5 = guess
+            
             #applies the first set of rules from every word in the wordlist to test
             for x, y in ruleOne.items():
                 wordR1 = wordR1.replace(x, y)
+                #print(wordR1)
                 hashcompare(md5hash, wordR1)
 
             #applies the second set of rules from every word in the wordlist to test
@@ -124,6 +133,21 @@ def dictionaryattack():
                 wordR2 = wordR2.replace(x, y)
                 hashcompare(md5hash, wordR2)
 
+            #applies the third set of rules from every word in the wordlist to test
+            for x, y in ruleThree.items():
+                wordR3 = wordR3.replace(x, y)
+                hashcompare(md5hash, wordR3)
+
+            #applies the forth set of rules from every word in the wordlist to test
+            for x, y in ruleFour.items():
+                wordR4 = wordR4.replace(x, y)
+                hashcompare(md5hash, wordR4)
+
+            #applies the forth set of rules from every word in the wordlist to test
+            for x, y in ruleFive.items():
+                wordR5 = wordR5.replace(x, y)
+                hashcompare(md5hash, wordR5)
+                
             #tests every word in the wordlist    
             hashcompare(md5hash, guess)
             
