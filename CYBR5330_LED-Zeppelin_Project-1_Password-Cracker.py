@@ -57,21 +57,21 @@ def menulist():
         else:
             menulist()
 
-    # if you already have an md5 hash, then dictionaryattack() (defined below) will run for a dictionary attack - coded by ...
+    # if you already have an md5 hash, then dictionaryattack() (defined below) will run for a dictionary attack - coded by Nathan
     elif menu == 2:
         dictionaryattack()
 
-    # if you already have an md5 hash, then bruteforceattack() (defined below) will run for a dictionary attack - coded by ...
+    # if you already have an md5 hash, then bruteforceattack() (defined below) will run for a dictionary attack - coded by Preston
     elif menu == 3:
         bruteforceattack()
 
     # if you select this option the program will end - option added by Bobbie
     elif menu == 4:
-        sys.exit("Thank you for using our password cracking program!")
+        sys.exit("\nThank you for using our password cracking program!\n")
 
     # if you provide an option other than 1, 2, 3 or 4
     else:
-        print("Invalid entry.  Try again")
+        print("\nInvalid entry.  Try again\n")
         menulist()
 
 # ---
@@ -82,12 +82,12 @@ def dictionaryattack():
     global start
 
     # the user selects the dictionary to use - option added by Bobbie
-    print("Do you have a dictionary you would like to use?")
+    print("\nDo you have a dictionary you would like to use?")
     dictChoice = input("Please enter 'y' for yes or 'n' for no\n").lower()
 
     if dictChoice == 'y':
         # user enters the file they would like to use
-        file = input("Please enter the name of the file you would like to use.\n")
+        file = input("\nPlease enter the name of the file you would like to use.\n")
         # the file is opened for reading
 
         while True:
@@ -95,8 +95,8 @@ def dictionaryattack():
                 passwordFile = open(file, 'r')
                 break
             except IOError:
-                print ('There is no file named ', file)
-                file = input("Please enter the name of the file you would like to use.\n")
+                print ('\nThere is no file named ', file)
+                file = input("\nPlease enter the name of the file you would like to use.\n")
         
         PASSWORD_LIST = str(passwordFile.read())
 
@@ -108,14 +108,14 @@ def dictionaryattack():
 
     else:
         # the user did not enter a valid input and is ask to enter a valid input
-        print("Invalid entry.  Try again")
+        print("\nInvalid entry.  Try again")
         dictionaryattack()
 
     # the user inputs the md5 hash to crack - coded by Nathan
     md5hash = input("\nPlease input the hash to crack:\n>")
 
     # asks the user if they would like to use mangle rules - coded by Bobbie
-    print("Do you want to apply mangle rules?")
+    print("\nDo you want to apply mangle rules?")
     rules = input("Please enter 'y' to apply rules, or any other key to continue without applying rules.\n").lower()
 
     # start the cracking timer
