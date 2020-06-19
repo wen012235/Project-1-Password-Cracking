@@ -33,7 +33,7 @@ def menulist():
         print("Please enter a number 1 - 4")
         menulist()
 
-    # if you only have the plaintext password, this will provide an md5 hash of that password, and then prompt user on how to move forward - coded by ...
+    # if you only have the plaintext password, this will provide an md5 hash of that password, and then prompt user on how to move forward - coded by Nathan
     if menu == 1:
 
         password = input("\nInput the password to hash:\n>")
@@ -47,7 +47,7 @@ def menulist():
                                  + "'b' for Brute Force Attack, " \
                                  + "or any other key to return to the main menu:\n").lower()
 
-        # prompt user on how to move forward - coded by ...
+        # prompt user on how to move forward - coded by Preston
         if passwordhashmenu == "d":
             dictionaryattack()
 
@@ -279,21 +279,21 @@ def hashcompare(md5hash_compare, guess_compare):
     global end
     global attempts
 
-    # a condensed version of what we did in menu option 2 above, where we hash the common passwords from the list
+    # hash the common passwords from the list
     hashedGuess = hashlib.md5(bytes(guess_compare, 'utf-8')).hexdigest()
 
     # comparing each of the hashed common passwords to the user input to determine if there is a match
     if hashedGuess == md5hash_compare:
         end = time.time()
-        # if they match, print the correct guess and quit the program.
+        # if they match, print the correct guess and stats.
         print("\nThe password is", str(guess_compare))
         if attempts == 1:
-            print("It took", str(end - start), "seconds\nand", str(attempts), "attempt to crack your password\n")
+            print("It took", str(round((end - start),6)), "seconds\nand", str(attempts), "attempt to crack your password\n")
         else:
-            print("It took", str(end - start), "seconds\nand", str(attempts), "attempts to crack your password\n")
+            print("It took", str(round((end - start),6)), "seconds\nand", str(attempts), "attempts to crack your password\n")
         menulist()
 
-    # or else, if they don't match, continue to the next hashed password and compare those
+    # or else, if they don't match, continue to the next hashed password and compare those (used to debug.  Commented out the print of each incorrect attempt).
     elif hashedGuess != md5hash_compare:
         # print("Password guess", str(guess_compare), "does not match, trying next...")
         attempts += 1
